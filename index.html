@@ -11,19 +11,22 @@
 <body>
   <header class="site-header">
     <div class="wrap nav">
-      <a href="#" class="logo">
+      <a href="index.html" class="logo">
         <img src="logo.png" alt="NT Webcraft logo" class="logo-img">
         <span class="logo-text">Webcraft</span>
       </a>
       <nav>
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#quote" class="btn">Get a free quote</a>
+        <a href="index.html" class="active">Home</a>
+        <a href="services.html">Services</a>
+        <a href="process.html">How it works</a>
+        <a href="about.html">About us</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <p id="submission-status" class="submission-status" role="status" aria-live="polite" hidden></p>
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
@@ -31,8 +34,8 @@
       <h1>Your business, online and <em>impossible to ignore</em></h1>
       <p>We design fast, beautiful websites that people trust and Google can find. Tell us what you need and get a clear quote.</p>
       <div class="cta">
-        <a href="#quote" class="btn">Request your website</a>
-        <a href="#services" class="btn ghost">See what we build</a>
+        <a href="contact.html" class="btn">Request your website</a>
+        <a href="contact.html" class="btn ghost">Get a free quote</a>
       </div>
       <ul class="trust">
         <li>✓ Mobile-friendly</li>
@@ -51,20 +54,17 @@
   </div>
 </section>
 
-    <section id="services">
-      <div class="wrap">
-        <h2>What we build</h2>
-        <p class="sub">From a simple business site to a full online store.</p>
-        <div class="grid">
-          <div class="card"><div class="ic">🏢</div><h3>Business websites</h3><p>Professional sites that build trust and bring in enquiries.</p></div>
-          <div class="card"><div class="ic">🛒</div><h3>Online stores</h3><p>Sell products online with secure checkout.</p></div>
-          <div class="card"><div class="ic">📅</div><h3>Booking systems</h3><p>Let customers book appointments 24/7.</p></div>
-          <div class="card"><div class="ic">🎨</div><h3>Portfolios &amp; blogs</h3><p>Showcase your work or share your story with style.</p></div>
-          <div class="card"><div class="ic">⚙️</div><h3>Custom web apps</h3><p>Dashboards, databases and tools made for your workflow.</p></div>
-          <div class="card"><div class="ic">🚀</div><h3>SEO &amp; maintenance</h3><p>Stay visible on Google and keep your site secure.</p></div>
-        </div>
-      </div>
-    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© 2026 NT Webcraft. All rights reserved.</div>
+  </footer>
+  <script>
+    const submissionStatus = document.querySelector("#submission-status");
+    if (new URLSearchParams(window.location.search).get("submission") === "success") {
+      submissionStatus.textContent = "Your request was sent successfully. We'll be in touch soon.";
+      submissionStatus.hidden = false;
+    }
+  </script>
 </body>
 </html>

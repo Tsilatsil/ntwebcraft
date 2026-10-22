@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | NT Webcraft</title>
+  <meta name="description" content="Tell NT Webcraft about the website you want and get a free quote.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="NT Webcraft logo" class="logo-img">
+        <span class="logo-text">Webcraft</span>
+      </a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="process.html">How it works</a>
+        <a href="about.html">About us</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div class="wrap">
+        <h1>Tell us about your website</h1>
+        <p>Answer a few questions and we'll reply with a clear quote.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <form class="quote-form" action="https://formspree.io/f/xljgqkyp" method="POST">
+          <input type="hidden" name="_subject" value="New website request - NT Webcraft">
+
+          <div class="row">
+            <div><label for="name">Your name *</label><input id="name" name="name" required></div>
+            <div><label for="email">Email *</label><input id="email" name="email" type="email" required></div>
+          </div>
+
+          <div class="row">
+            <div><label for="phone">Phone / WhatsApp</label><input id="phone" name="phone" type="tel"></div>
+            <div><label for="business">Business name</label><input id="business" name="business"></div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="type">Type of website *</label>
+              <select id="type" name="type" required>
+                <option>Business website</option>
+                <option>Online store</option>
+                <option>Booking website</option>
+                <option>Portfolio / Blog</option>
+                <option>Custom web app</option>
+                <option>Redesign my existing site</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div>
+              <label for="budget">Budget range</label>
+              <select id="budget" name="budget">
+                <option>Not sure</option>
+                <option>Under R5,000</option>
+                <option>R5,000 - R15,000</option>
+                <option>R15,000 - R40,000</option>
+                <option>R40,000+</option>
+              </select>
+            </div>
+          </div>
+
+          <label>Features you need</label>
+          <div class="feat">
+            <label><input type="checkbox" name="features" value="Contact form"> Contact form</label>
+            <label><input type="checkbox" name="features" value="Online payments"> Online payments</label>
+            <label><input type="checkbox" name="features" value="Booking"> Booking</label>
+            <label><input type="checkbox" name="features" value="User logins"> User logins</label>
+            <label><input type="checkbox" name="features" value="Blog"> Blog</label>
+            <label><input type="checkbox" name="features" value="Gallery"> Gallery</label>
+            <label><input type="checkbox" name="features" value="SEO"> SEO</label>
+          </div>
+
+          <label for="timeline">When do you need it?</label>
+          <select id="timeline" name="timeline">
+            <option>Flexible</option>
+            <option>Within 2 weeks</option>
+            <option>Within a month</option>
+            <option>1 to 3 months</option>
+          </select>
+
+          <label for="details">Describe your dream website *</label>
+          <textarea id="details" name="details" required placeholder="Colours, style, pages you want, websites you like..."></textarea>
+
+          <button class="btn" type="submit">Send my request</button>
+          <p id="form-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="contact-info">
+          <p>Prefer to talk? Email <strong>REPLACE-WITH-YOUR-EMAIL</strong> or WhatsApp <strong>REPLACE-WITH-YOUR-NUMBER</strong>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© 2026 NT Webcraft. All rights reserved.</div>
+  </footer>
+  <script>
+    const form = document.querySelector(".quote-form");
+    const formStatus = document.querySelector("#form-status");
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      submitButton.disabled = true;
+      formStatus.textContent = "Sending your request...";
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" }
+        });
+
+        if (!response.ok) {
+          formStatus.textContent = "We couldn't send your request. Please try again.";
+          return;
+        }
+
+        window.location.assign("index.html?submission=success");
+      } catch (error) {
+        console.error("Form submission failed:", error);
+        formStatus.textContent = "We couldn't send your request. Check your connection and try again.";
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
